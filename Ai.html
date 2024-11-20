@@ -1,0 +1,121 @@
+# Manso-Ai-tool
+Ai tool answer all your questions welcome 🤗
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manso Tool - AI Chatbot</title>
+  <style>
+    /* Basic styles for the page and chat container */
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to bottom right, #6a11cb, #2575fc);
+      color: #fff;
+    }
+    .chat-container {
+      width: 100%;
+      max-width: 700px;
+      margin: 50px auto;
+      padding: 30px;
+      background: #fff;
+      border-radius: 15px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+      color: #333;
+    }
+    /* Styles for messages and input */
+    .messages {
+      height: 400px;
+      overflow-y: auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      margin-bottom: 20px;
+      border-radius: 10px;
+      background-color: #f9f9f9;
+    }
+    .message.user {
+      background: #2575fc;
+      color: white;
+      text-align: right;
+    }
+    .message.bot {
+      background: #e7e7e7;
+      color: #333;
+    }
+    /* Input box and button */
+    .input-area input {
+      flex: 1;
+      padding: 12px;
+      border: 2px solid #2575fc;
+      border-radius: 8px;
+    }
+    .input-area button {
+      padding: 12px 20px;
+      background: #2575fc;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    footer {
+      text-align: center;
+      font-size: 14px;
+      color: #f4f4f9;
+    }
+  </style>
+</head>
+<body>
+  <div class="chat-container">
+    <header>Manso Tool - AI Chatbot</header>
+    <div class="messages" id="messages"></div>
+    <div class="input-area">
+      <input type="text" id="user-input" placeholder="Type your message..." />
+      <button id="send-btn">Send</button>
+    </div>
+  </div>
+
+  <footer>
+    <p>Tool made by <strong>Sedyka Mansour</strong> | <a href="https://github.com/SedykaMansour/Mr-Ahmad-Elbasha" target="_blank">GitHub</a></p>
+  </footer>
+
+  <script>
+    // Function to handle the message sending
+    async function sendMessage() {
+      const userMessage = document.getElementById('user-input').value.trim();
+      if (!userMessage) return;
+
+      // Add the user's message to the chat window
+      const userMsgElement = document.createElement('div');
+      userMsgElement.className = 'message user';
+      userMsgElement.textContent = userMessage;
+      document.getElementById('messages').appendChild(userMsgElement);
+
+      // Clear the input field
+      document.getElementById('user-input').value = '';
+
+      // Get the bot's response
+      const botMessage = await getAIResponse(userMessage);
+
+      // Display the bot's message
+      const botMsgElement = document.createElement('div');
+      botMsgElement.className = 'message bot';
+      botMsgElement.textContent = botMessage;
+      document.getElementById('messages').appendChild(botMsgElement);
+    }
+
+    // Simulating an AI response (integrate with real API)
+    async function getAIResponse(message) {
+      // Simulating a response here for now
+      return `You said: ${message}. The bot is still learning!`;
+    }
+
+    // Add event listeners
+    document.getElementById('send-btn').addEventListener('click', sendMessage);
+    document.getElementById('user-input').addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') sendMessage();
+    });
+  </script>
+</body>
+</html>
